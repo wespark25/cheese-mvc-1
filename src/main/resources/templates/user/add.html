@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" >
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+<form method="post" style="max-width:600px;" id="userForm2">
+    <div class="form-group">
+        <label value="Name">Name</label>
+        <input th:unless="${checked}"  type="text" name="username" />
+        <input th:if="${checked}" type="text" name="username" th:value="${username}"/>
+    </div>
+    <div class="form-group">
+        <label value="email">Email</label>
+        <input th:unless="${checked}" type="email" name="email" />
+        <input th:if="${checked}" type="email" name="email" th:value="${email}"/>
+    </div>
+    <div class="form-group">
+        <label value="password">Password</label>
+        <input type="password" name="password"  />
+    </div>
+    <div class="form-group">
+        <label>Verify Password</label>
+        <input type="password" name="verify"  />
+    </div>
+
+    <input type="submit" value="Submit" />
+</form>
+
+<!--<form th:if="${checked}" method="post" style="max-width:600px;" id="userForm">-->
+<!--    <div class="form-group">-->
+<!--        <label value="">Checked was true</label>-->
+<!--        <input type="text" name="username" th:value="${username}"/>-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--        <label value="email">Email</label>-->
+<!--        <input type="email" name="email"  />-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--        <label value="password">Password</label>-->
+<!--        <input type="password" name="password"  />-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--        <label>Verify Password</label>-->
+<!--        <input type="password" name="verify"  />-->
+<!--    </div>-->
+
+<!--    <input type="submit" value="Submit" />-->
+<!--</form>-->
+
+</body>
+</html>
