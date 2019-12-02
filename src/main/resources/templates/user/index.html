@@ -4,9 +4,23 @@
 <body class="container">
 <h1 th:text="${title}">Default Title</h1>
 
-<nav th:replace="fragments :: navigation"></nav>
+<nav th:replace="fragments :: userNavigation"></nav>
 
-<h2 th:if="${checked}" th:text="${'Hello, ' + username}"/>
-<h2 th:unless="${checked}" th:text="Hello, Stranger"></h2>
+<h2 th:if="${checked}" th:text="${'Hello, ' + user.username}"/>
+<h2 th:unless="${checked}">Hello, Stranger</h2>
+<table class="table">
+    <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th>ID</th>
+        <th>Date Joined</th>
+    </tr>
+    <tr th:each="user: ${users}">
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.dateAdded}"></td>
+    </tr>
+</table>
 </body>
 </html>

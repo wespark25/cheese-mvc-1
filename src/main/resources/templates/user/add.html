@@ -4,50 +4,35 @@
 <body class="container">
 <h1 th:text="${title}">Default Title</h1>
 
-<nav th:replace="fragments :: navigation"></nav>
-<form method="post" style="max-width:600px;" id="userForm2">
+<nav th:replace="fragments :: userNavigation"></nav>
+
+<form method="post" style="max-width:600px;" id="userForm2" th:object="${user}">
     <div class="form-group">
-        <label value="Name">Name</label>
-        <input th:unless="${checked}"  type="text" name="username" />
-        <input th:if="${checked}" type="text" name="username" th:value="${username}"/>
+        <label th:for="username">Name</label>
+<!--        <input th:unless="${checked}"  type="text" name="username" />-->
+        <input class="form-control" th:field="*{username}"/>
+        <span  th:errors="*{username}" class="error"> </span>
     </div>
     <div class="form-group">
-        <label value="email">Email</label>
-        <input th:unless="${checked}" type="email" name="email" />
-        <input th:if="${checked}" type="email" name="email" th:value="${email}"/>
+        <label th:for="email">Email</label>
+<!--        <input th:unless="${checked}" type="email" name="email" />-->
+        <input type="email" class="form-control" th:field="*{email}" />
     </div>
     <div class="form-group">
-        <label value="password">Password</label>
-        <input type="password" name="password"  />
+        <label th:for="password">Password</label>
+        <input type="password" class="form-control" th:field="*{password}"  />
+        <span th:errors="*{password}"></span>
     </div>
     <div class="form-group">
-        <label>Verify Password</label>
-        <input type="password" name="verify"  />
+        <label th:for="verifyPassword">Verify Password</label>
+        <input type="password" class="form-control" th:field="*{verifyPassword}"  />
+        <span th:errors="*{verifyPassword}"></span>
     </div>
 
     <input type="submit" value="Submit" />
 </form>
-
-<!--<form th:if="${checked}" method="post" style="max-width:600px;" id="userForm">-->
-<!--    <div class="form-group">-->
-<!--        <label value="">Checked was true</label>-->
-<!--        <input type="text" name="username" th:value="${username}"/>-->
-<!--    </div>-->
-<!--    <div class="form-group">-->
-<!--        <label value="email">Email</label>-->
-<!--        <input type="email" name="email"  />-->
-<!--    </div>-->
-<!--    <div class="form-group">-->
-<!--        <label value="password">Password</label>-->
-<!--        <input type="password" name="password"  />-->
-<!--    </div>-->
-<!--    <div class="form-group">-->
-<!--        <label>Verify Password</label>-->
-<!--        <input type="password" name="verify"  />-->
-<!--    </div>-->
-
-<!--    <input type="submit" value="Submit" />-->
-<!--</form>-->
+<h3 th:if="${matchError != null}" th:text="${matchError}"></h3>
+<h3 th:if="${nullError != null}" th:text="${nullError}"></h3>
 
 </body>
 </html>
